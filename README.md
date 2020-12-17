@@ -9,7 +9,7 @@
 http://minmeansmin.pythonanywhere.com
 
 ### Built With
-##### Team Lotto
+#### Team Lotto
 * 현민 - Python을 활용한 웹스크래핑과 데이터 전처리, 자연어처리 구현, Django와 SQLite를 활용한 웹애플리케이션 구현, 자바스크립트 및 제이쿼리 코딩, Github와 Pythonanywhere를 연동하여 배포
 * 소민지 - Python을 활용한 웹스크래핑과 데이터 전처리, CSS 작업
 * 김보라 - Python을 활용한 웹스크래핑과 데이터 전처리, 데이터별 세부 카테고리 분류 및 자료정리
