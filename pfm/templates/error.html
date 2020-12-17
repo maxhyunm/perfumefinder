@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Error!</title>
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script> 
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<script>
+function goBack() {
+	window.history.back();
+}
+</script>
+<style>
+	.bg_img {
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.page {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		position: relative;
+		z-index: 1;
+		padding-top: 200px;
+		padding-bottom: 150px;
+		text-align: center;
+	}
+
+	.page::after {
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		content: "";
+		opacity: 0.9;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+
+	div.page>div {
+		font-family: Gyeonggi_win_bold;
+		text-align: center;
+		font-weight : bold;
+		color : #6E5057;
+		font-size: 16pt;
+		margin-right : 5px;
+		cursor : default;
+	}
+	input {
+		background-color: #E4A6B4;
+		color: white;
+		border: none;
+		border-radius: 15px;
+		padding: 5 8 5 8px;
+		font-family: Gyeonggi_win_Medium;
+		font-size: 12pt;
+	}
+
+	input:hover {
+		background-color: #6E5057;
+	}
+
+</style>
+<title>error</title>
+</head>
+<body>
+	<div class="bg_img">
+		<header>
+			<div id="ttlbg">
+			<div id="ttlout">
+				<p id="ttlbox">
+					<a href="/" class="title">Perfume Finder</a>
+				</p>
+			</div>
+			</div>
+		</header>
+		
+
+		<!-- 에러내용 받아서 출력하는 텍스트. 중괄호 내용만 놔두고 다 바꿔도 됨 -->
+		<div class="page">
+			<div>다음의 사항이 누락되었습니다 : {{error}}</div>
+			<br><BR>
+
+			<!-- 돌아가기 버튼 -->
+			<input type="button" value="이전" onclick="goBack()">
+		</div>
+			
+	</div>
+	
+</body>
+</html>

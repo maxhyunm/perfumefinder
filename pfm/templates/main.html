@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Perfume Finder</title>
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script> 
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<script>
+	function test1(){
+		document.form1.action="test1";
+		document.form1.submit();
+	}
+	function test2(){
+		document.form1.action="test2";
+		document.form1.submit();
+	}
+	function top10(){
+		document.form1.action='top10';
+		document.form1.submit();
+	}
+	function aroma(){
+		document.form1.action='aroma';
+		document.form1.submit();
+	}
+</script>
+
+<style>
+
+
+	.testbtn {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		position: relative;
+		z-index: 1;
+		padding-top: 150px;
+		padding-bottom: 150px;
+	}
+
+	.testbtn::after {
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		content: "";
+		opacity: 0.9;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+
+	form {
+		padding: 0 auto;
+		text-align: center;
+	}
+
+	input.btn-lemon {
+        background: url("{% static 'bgimg/perfume-lemon2.jpg' %}") no-repeat;
+        /*background: url('../images/perfume-lemon2.jpg') no-repeat;*/
+    }
+
+    input.btn-jasmine {
+        background: url("{% static 'bgimg/perfume-jasmine2.jpg' %}") no-repeat;
+        /*background: url('../images/perfume-jasmine2.jpg') no-repeat;*/
+    }
+
+    input.btn-perfumes {
+        background: url("{% static 'bgimg/perfumes-flowers2.jpg' %}") no-repeat;
+        /*background: url('../images/perfumes-flowers2.jpg') no-repeat;*/
+    }
+    input.btn-aroma {
+        background: url("{% static 'bgimg/lavender-oil.jpg' %}") no-repeat;
+        /*background: url('../images/perfumes-flowers2.jpg') no-repeat;*/
+    }
+
+    input[type=button] {
+		border: none;
+        border-radius: 70%;
+        width: 300px;
+        height: 300px;
+        cursor: pointer;
+        font-family: "Gyeonggi_win";
+        color: #DE7C88;
+        font-size: 16pt;
+        text-shadow: -1px 0 white,
+				      0 1px white,
+				      1px 0 white,
+				      0 -1px white;
+		margin: 50px;
+		transition-property: background-color;
+		transition-duration: 1s;
+		transition-timing-function: ease-out;
+		
+	}
+
+	input:focus {
+		outline:0;
+	}
+
+
+	input:hover{		
+		transition: background 1s ease-out;
+		opacity: 0.4;
+		color: red;
+	}
+
+</style>
+</head>
+<body>
+	<div class="bg_img">
+		<header>
+			<div id="ttlbg">
+			<div id="ttlout">
+				<p id="ttlbox">
+					<a href="/" class="title">Perfume Finder</a>
+				</p>
+			</div>
+			</div>
+		</header>
+	
+		
+		{% csrf_token%}
+		<!-- 향수 테스트 선택하는 버튼 -->
+		<div class="testbtn">
+			<form method="post" name="form1" enctype="multipart/form-data">
+				<input type="button" value="향과 노트를 골라 향수 찾기" onclick="test1()" class="btn-lemon">
+				<input type="button" value="내가 아는 향수와 비슷한 향수 찾기" onclick="test2()" class="btn-jasmine">
+				<input type="button" value="Top 10 리스트 보기" onclick="top10()" class="btn-perfumes">
+				<input type="button" value="아로마 효능에 따른 향수 보기" onclick="aroma()" class="btn-aroma">
+			</form>
+		</div>
+	</div>
+	
+
+</body>
+</html>

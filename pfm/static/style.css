@@ -1,0 +1,172 @@
+@-moz-keyframes reveal-banner {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@-webkit-keyframes reveal-banner {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@-ms-keyframes reveal-banner {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes reveal-banner {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+
+@FONT-FACE {
+	font-family: 'Dosis-ExtraBold';
+	src:url("font/Dosis/Dosis-ExtraBold.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Gyeonggi_win_Medium';
+	src:url("font/Gyeonggi_win/서울한강 장체B.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Gyeonggi_win';
+	src:url("font/Gyeonggi_win/서울한강 장체B.ttf");
+}
+
+
+@FONT-FACE {
+	font-family: 'Gyeonggi_win_bold';
+	src:url("font/Gyeonggi_win/서울한강 장체EB.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Gyeonggi_win_Light';
+	src:url("font/Gyeonggi_win/서울한강 장체M.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Dosis-Medium';
+	src:url("font/Dosis/Dosis-Medium.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Rightside';
+	src:url("font/Rightside.otf");
+}
+
+@FONT-FACE {
+	font-family: 'Ameyallinda_Signature';
+	src:url("font/Ameyallinda_Signature.otf");
+}
+
+@FONT-FACE {
+	font-family: 'Shorelines_Script_Bold';
+	src:url("font/Shorelines_Script_Bold.otf");
+}
+
+@FONT-FACE {
+	font-family: 'Please_write_me_a_song';
+	src:url("font/Please_write_me_a_song.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Challenge';
+	src:url("font/Challenge.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'ArtographieLight';
+	src:url("font/ArtographieLight-PERSONAL_USE.ttf");
+}
+@FONT-FACE {
+	font-family: 'EBGaramond-Italic';
+	src:url("font/EBGaramond-Italic-VariableFont_wght.ttf");
+}
+@FONT-FACE {
+	font-family: 'EBGaramond';
+	src:url("font/EBGaramond-VariableFont_wght.ttf");
+}
+@FONT-FACE {
+	font-family: 'FUTRFW';
+	src:url("font/FUTRFW.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Cherry-Light';
+	src:url("font/Cherry-Light.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'GPMJ';
+	src:url("GPMJ.ttf");
+}
+
+body {
+	margin: 0;
+}
+
+.bg_img {		
+	position:absolute;
+	width:100%;
+	height:auto;
+	background-image: url("bgimg/transparent-perfume-bottle-flowers-pink-wall-spring-wall-with-aroma-perfume-flat-lay.jpg");
+	background-color: #E4A6B4;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	object-fit:cover;
+	opacity: 0.8;
+	float: left;
+}
+
+header {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.title {
+	-moz-animation: reveal-banner 1s 0s ease-in-out;
+	-webkit-animation: reveal-banner 1s 0s ease-in-out;
+	-ms-animation: reveal-banner 1s 0s ease-in-out;
+	animation: reveal-banner 1s 0s ease-in-out;	
+	font-size: 70pt;
+	font-family: "EBGaramond-Italic";
+	color: white;
+	text-decoration: none;
+}
+
+#ttlbg {
+	padding : 5px;
+	background: rgba(52, 27, 43, 0.2);
+	width : 800px;
+	margin : auto;
+	box-sizing: content-box;
+}
+
+
+
+#ttlout {
+	border-top : 1px solid white;
+	border-bottom : 1px solid white;
+	padding-top : 2px;
+	padding-bottom : 2px;
+	margin : auto;
+	width : 800px;
+	box-sizing: border-box;
+}
+
+#ttlbox {
+	width : 800px;
+	border-top : 2px solid white;
+	border-bottom : 2px solid white;
+	padding : 30px;
+	margin : auto;
+	box-sizing: border-box;
+}
+
+
+

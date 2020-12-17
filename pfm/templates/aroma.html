@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script> 
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<script>
+function goBack() {
+    document.location.href='/';
+}
+
+{% for nr, ne, nk in namezip %}
+$(document).ready(function(){
+	$('.{{nr}}').hover(function(){
+		$('.{{nr}}').addClass('labelhover')	
+	}, function(){
+		$('.{{nr}}').removeClass('labelhover')
+	});
+
+});
+{% endfor %}
+
+
+</script>
+
+
+<style>
+	.labelchecked {
+		background-color:#fadee3;
+	}
+	
+	.labelhover {
+		background-color:#fadee3;
+	}
+	.formbox {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		position: relative;
+		z-index: 1;
+		padding-top: 120px;
+		padding-bottom: 150px;
+	}
+
+	.formbox::after {
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		content: "";
+		opacity: 0.9;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+	
+	.aroma {
+		margin : auto;
+	}
+
+	form {
+		margin : auto;
+		padding: 0 auto;
+		width: 750px;
+	}
+	
+	.boxlabel {
+		font-size : 12px;
+		padding : 10px;
+		cursor : pointer;
+	}
+	
+	div#sidebox {
+		width : 400px;
+		padding-right : 100px;
+		padding-left : 100px;
+	}
+	
+	p#heads {
+		text-align : center;
+		font-weight: bold;
+		font-family: Gyeonggi_win;
+		color : #6E5057;
+	}
+
+	p {
+		font-family: Gyeonggi_win_Light;
+		font-size: 12pt;
+		user-select: none;
+	}
+	
+	strong {
+		display: inline-block;
+		margin-bottom: 10px;
+		font-family: Gyeonggi_win_bold;
+		font-size: 14pt;
+		color: #3B2B2F;
+		user-select: none;
+	}
+
+	form>div {
+		padding: 10px;
+	}
+	
+	label {
+		font-family: Gyeonggi_win_Light;
+		font-size: 12pt;
+		user-select: none;
+	}
+
+	input {
+		background-color: #E4A6B4;
+		color: white;
+		border: none;
+		border-radius: 15px;
+		padding: 5 8 5 8px;
+		font-family: Gyeonggi_win_Medium;
+		font-size: 12pt;
+		margin-left: 5px;
+		margin-top: 10px;
+	}
+
+	input:hover {
+		background-color: #6E5057;
+	}
+
+	.formheader {
+		margin-bottom: 50px;
+		font-family: Gyeonggi_win_Light;
+		font-size: 12pt;
+		text-align: center;
+		color: #3B2B2F;
+		user-select: none;
+	}
+
+	label {
+		font-family: Gyeonggi_win_Light;
+		cursor : pointer;
+	}
+
+	#texts {
+	text-align : center;
+	color : #6E5057;
+	}
+	
+	.table {
+		border : 0;
+		border-style: none;
+		padding : 10px;
+	}
+	
+	.names {
+		background-color:#f0c7ce;
+	}
+	
+	.blank {
+		height : 10px;
+	}
+	
+
+</style>
+<title>아로마 효능별 향수 찾기</title>
+</head>
+<body>
+	<div class="bg_img">
+	<!-- 클릭 시 메인페이지로 이동 -->
+		<header>
+			<div id="ttlbg">
+			<div id="ttlout">
+				<p id="ttlbox">
+					<a href="/" class="title">Perfume Finder</a>
+				</p>
+			</div>
+			</div>
+		</header>
+		
+
+		{% csrf_token %}
+		<!-- radio버튼과 checkbox, 일반 버튼으로 구성 -->
+		<div class="formbox">
+			<div class="formheader">
+				<h3>아로마 효능별 향수 찾기</h4>
+				<span>다양한 효능을 가진 아로마별 추천 향수를 알아보세요</span>
+			</div>
+			<div class="aroma">
+				<form action="result3" method="post">
+					<strong>아로마 향 구분</strong><br>	
+					<table class="table">
+						{% for nk, ne, nr, nc in arzip %}
+						<tr>
+							<td class="boxlabel {{nr}}">
+								<input type="checkbox" name="note[]" value="{{nr}}" id="{{nr}}">
+							</td>
+							<td class="boxlabel names">
+								<label for="{{nr}}">{{nk}}({{ne}})</label>
+							</td>
+							<td class="boxlabel {{nr}}">
+								<label for="{{nr}}">{{nc|safe}}</label>
+							</td>
+						</tr>
+						<tr class="blank">
+						<td></td><td></td><td></td>
+						</tr>
+						{% endfor %}
+					</table>
+					<center>
+						<input type="button" value="이전" onclick="goBack()">
+						<input type="submit" value="확인">
+					</center>
+				</form>
+			</div>
+		</div>	
+
+	</div>
+</body>
+</html>

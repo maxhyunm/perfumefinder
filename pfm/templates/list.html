@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Top10 List</title>
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script> 
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<script>
+function goBack() {
+    document.location.href='/';
+}
+</script>
+<script>
+
+{% for i in titles %}
+
+$(document).ready(function(){
+	$('#{{i}}').hide();
+	
+	$('#{{i}}_ttl').hover(function(){
+		$(this).addClass('onhover')
+	}, function(){
+		$(this).removeClass('onhover')
+	});
+	
+	$('#{{i}}_ttl').mousedown(function(){
+		$(this).addClass('onclick')
+	});
+	
+	$('#{{i}}_ttl').mouseup(function(){
+		$(this).removeClass('onclick')
+	});
+	
+	$('#{{i}}_ttl').click(function(){		
+		$('#{{i}}').fadeToggle('slow')
+	});
+
+
+	
+});
+
+
+ 	
+{% endfor %}
+</script>
+
+		
+		
+<style>
+
+	input {
+		background-color: #E4A6B4;
+		color: white;
+		border: none;
+		border-radius: 15px;
+		padding: 5 8 5 8px;
+		font-family: Gyeonggi_win_Medium;
+		font-size: 12pt;
+		margin-left: 5px;
+		margin-top: 100px;
+	}
+
+	input:hover {
+		background-color: #6E5057;
+	}
+
+	.listbox {
+		width: 100%;
+		height: 3030px;
+		margin: auto;
+		position: relative;
+		z-index: 1;
+		padding-top: 150px;
+		padding-bottom: 150px;
+	}
+
+	.listbox::after {
+		width: 100%;
+		height: 3030px;
+		background-color: white;
+		content: "";
+		opacity: 0.9;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+
+	.rank {
+		font-family: "Gyeonggi_win_medium";
+		color: #FB6C8D;
+	}
+	
+	.titlebox {
+		text-align : center;
+	}
+
+	.listboxin {
+		width: 100%;
+		height: 100%;
+		padding : 0;
+		margin : 0 auto;
+		text-align : center;
+	}
+
+	.ranks {
+		display: inline-block;
+		font-family: "Gyeonggi_win_Light";
+		color: #3B2B2F;
+		font-size: 12pt;
+		text-align: center;
+		width : 350px;
+		margin : 0;
+		padding : 0;
+		cursor : default;
+	}
+	
+	.names {
+		list-style: none;
+		display: inline-block;
+		width : 350px;
+		font-size : 20px;
+		font-family: Gyeonggi_win_bold;
+		color : #6E5057;
+		text-align: center;
+		font-weight : bold;
+		margin-right : 5px;
+		margin-bottom : 10px;
+		cursor : default;
+	}
+	.ranks> p {
+		margin : 0;	
+		text-align : center;
+	}
+	
+	.ul {
+		margin : 0;
+		padding : 0;
+	}
+	
+	li {
+		background-color : #fadee3;
+		padding-top : 5px;
+		padding-bottom : 5px;
+		border-radius: 15px;
+	}
+	.onhover {
+		background-color: #E4A6B4;
+		color : white;
+	}
+	.onclick {
+		background-color: white;
+		color : #E4A6B4;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+	
+</style>
+</head>
+<body>
+	<div class="bg_img">
+		<header>
+			<div id="ttlbg">
+			<div id="ttlout">
+				<p id="ttlbox">
+					<a href="/" class="title">Perfume Finder</a>
+				</p>
+			</div>
+			</div>
+		</header>
+		
+
+		<!-- 결과를 받아서 출력. 중괄호 내용만 그대로 두고 다 바꿔도 됨!! -->
+
+		
+		<div class="listbox">
+			<div class="titlebox">
+				<ul class="ul">
+					<li class="names" id="total_ttl">총 순위
+					<li class="names" id="male_ttl">남성이 선호하는 향수 순위
+					<li class="names" id="female_ttl">여성이 선호하는 향수 순위
+					<li class="names" id="longevity_ttl">지속력이 좋은 향수 순위
+					<li class="names" id="sillage_ttl">확산력이 넓은 향수 순위
+				</ul>
+			</div>
+		
+		
+			<div class="listboxin">
+				<div class="ranks">
+					<p id="total">
+					{% for n,i,j,k1,k2,img in total_zip %}
+					<a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new"><img src="{% static img %}" width="200" height="200"></a><br><br>
+					<span class="rank">{{n}}위. </span><a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new">{{i}} : {{j}}</a><br><br>
+					{% endfor %}
+					</p>
+				</div>
+				
+				<div class="ranks">
+					<p id="male">
+					{% for n,i,j,k1,k2,img in male_zip %}
+					<a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new"><img src="{% static img %}" width="200" height="200"></a><br><br>
+					<span class="rank">{{n}}위. </span><a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new">{{i}} : {{j}}</a><br><br>
+					{% endfor %}
+					</p>
+				</div>
+				
+				
+				<div class="ranks">
+					<p id="female">
+					{% for n,i,j,k1,k2,img in female_zip %}
+					<a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new"><img src="{% static img %}" width="200" height="200"></a><br><br>
+					<span class="rank">{{n}}위. </span><a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new">{{i}} : {{j}}</a><br><br>
+					{% endfor %}
+					</p>
+				</div>
+				
+				
+				<div class="ranks">
+					<p id="longevity">
+					{% for n,i,j,k1,k2,img in longevity_zip %}
+					<a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new"><img src="{% static img %}" width="200" height="200"></a><br><br>
+					<span class="rank">{{n}}위. </span><a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new">{{i}} : {{j}}</a><br><br>
+					{% endfor %}
+					</p>
+				</div>
+				
+				
+				<div class="ranks">
+					<p id="sillage">
+					{% for n,i,j,k1,k2,img in sillage_zip %}
+					<a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new"><img src="{% static img %}" width="200" height="200"></a><br><br>
+					<span class="rank">{{n}}위. </span><a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new">{{i}} : {{j}}</a><br><br>
+					{% endfor %}
+					</p>
+				</div>
+
+				<br><BR>
+
+				<!-- 돌아가기 버튼 -->
+				<input type="button" value="이전" onclick="goBack()">
+			</div>
+				
+		</div>
+	</div>
+</body>
+</html>

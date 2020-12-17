@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<script>
+function goBack() {
+    document.location.href='/';
+}
+</script>
+<style>
+
+	.resultbox {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		position: relative;
+		z-index: 1;
+		padding-top: 120px;
+		padding-bottom: 120px;
+		text-align:center;
+	}
+
+	.resultbox::after {
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		content: "";
+		opacity: 0.9;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+
+	.formheader {
+		margin-bottom: 50px;
+		font-family: Gyeonggi_win_Light;
+		font-size: 12pt;
+		text-align: center;
+		color: #3B2B2F;
+		user-select: none;
+	}
+
+	.result_rank {
+		display: inline-block;
+		font-family: "Gyeonggi_win_Light";
+		color: #3B2B2F;
+		font-size: 12pt;
+		text-align: center;
+		width : 350px;
+		margin : 0 auto;
+		padding : 0;
+		cursor : default;
+		position: relative;
+
+	}
+	.res_list {
+		list-style: none;
+		display: inline-block;	
+		font-family: "Gyeonggi_win_Light";
+		color: #3B2B2F;
+		font-size: 12pt;
+		text-align: center;
+		vertical-align : top;
+		width : 320px;
+		margin : 15px;
+		padding : 0;
+		cursor : default;
+	}
+	.info {
+		list-style: none;
+		display: inline-block;
+		font-family: "Gyeonggi_win_Light";
+		color: #3B2B2F;
+		font-size: 12pt;
+		text-align: center;
+		width : 320px;
+		margin : 0 15px 0 15px;
+		padding : 0;
+		cursor : default;
+	}
+	
+	ul {
+		margin : auto;
+		padding-inline-start: 0px;
+	}
+	
+	input {
+		background-color: #E4A6B4;
+		color: white;
+		border: none;
+		border-radius: 15px;
+		padding: 5 8 5 8px;
+		font-family: Gyeonggi_win_Medium;
+		font-size: 12pt;
+		margin-left: 5px;
+		margin-top: 100px;
+	}
+
+	input:hover {
+		background-color: #6E5057;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.rank {
+		display: inline-block;
+		font-family: "Gyeonggi_win_medium";
+		color: #FB6C8D;
+		margin-bottom: 20px;
+	}
+
+	div#spinfo {
+		margin-bottom: 15px;
+		font-weight: bold;
+	}
+
+	ul>p {
+		width: 320px;
+	}
+
+</style>
+<title>향수테스트</title>
+</head>
+
+<body>
+	<div class="bg_img">
+		<header>
+			<div id="ttlbg">
+			<div id="ttlout">
+				<p id="ttlbox">
+					<a href="/" class="title">Perfume Finder</a>
+				</p>
+			</div>
+			</div>
+		</header>
+		
+		<div class="resultbox">
+			<!-- 결과를 받아서 출력. 중괄호 내용만 그대로 두고 다 바꿔도 됨!! -->
+			<div class="formheader">
+				<h3>결과</h3>
+				<span>사진이나 제품명을 클릭하면 검색 페이지로 넘어갑니다.</span>
+			</div>
+
+			<ul>
+				{% for k1,k2,img in zips1 %}
+				<li class="res_list">
+				<a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new"><img src="{% static img %}" width="200" height="200"></a>
+				</li>
+				{% endfor %}
+			</ul>
+
+			<ul>
+				{% for n,i,j,k1,k2 in zips2 %}
+				<li class="res_list">
+				<span class="rank">{{n}}위. </span><a href ="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={{k1}}+{{k2}}" target="new">{{i}} : {{j}}</a>
+				</li>
+				{% endfor %}
+			</ul>
+
+			<ul>
+				{% for a, n in zips3 %}
+				<li class="res_list">
+				<p class="acds"><div id="spinfo">조합(Accord)</div>{{a}}</p>
+				<p class="nts"><div id="spinfo">노트</div>{{n}}</p>
+				</li>
+				{% endfor %}
+			</ul>
+			<br><BR>
+
+			<!-- 돌아가기 버튼 -->
+			<input type="button" value="돌아가기" onclick="goBack()">
+
+			
+		</div>
+			
+	</div>
+</body>
+</html>

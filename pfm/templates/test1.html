@@ -1,0 +1,308 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script> 
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<script>
+function goBack() {
+    document.location.href='/';
+}
+	
+	{% for a,c in acczip %}
+	$(document).ready(function(){
+		$('#ac_{{a}}').hover(function(){
+			$('#heads').text('{{a|upper}}'),
+			$('#texts').text('{{c}}'),
+			$('#ac_{{a}}').addClass('labelhover')
+			
+		}, function(){
+			$('#heads').text(''),
+			$('#texts').text('항목 위에 마우스를 올리시면 설명이 나옵니다'),
+			$('#ac_{{a}}').removeClass('labelhover')
+		});
+	});
+	
+	
+	{% endfor %}
+	
+	{% for n,c in notzip %}
+	$(document).ready(function(){
+		$('#nt_{{n}}').hover(function(){
+			$('#heads').text('{{n|upper}}'),
+			$('#texts').text('{{c}}'),
+			$('#nt_{{n}}').addClass('labelhover')
+			
+		}, function(){
+			$('#heads').text(''),
+			$('#texts').text('항목 위에 마우스를 올리시면 설명이 나옵니다'),
+			$('#nt_{{n}}').removeClass('labelhover')
+		});
+	});
+	{% endfor %}
+	
+	$(document).ready(function(){
+		$('.sillage').hover(function(){
+			$('#heads').text('확산력'),
+			$('#texts').text('향이 넓게 퍼지는 정도를 의미')
+			
+		}, function(){
+			$('#heads').text(''),
+			$('#texts').text('항목 위에 마우스를 올리시면 설명이 나옵니다')
+		});
+	});
+
+	
+</script>
+
+
+<style>
+	
+	.labelhover {
+		background-color:#f0c7ce;
+	
+	}
+	.formbox {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		position: relative;
+		z-index: 1;
+		padding-top: 120px;
+		padding-bottom: 150px;
+	}
+
+	.formbox::after {
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		content: "";
+		opacity: 0.9;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+
+
+	form {
+		padding: 0 auto;
+		width: 750px;
+	}
+	
+	div.boxlabel {
+		display: inline-block;
+		width: 170px;
+		font-size : 12px;
+	}
+	
+	div#sidebox {
+		width : 400px;
+		padding-right : 100px;
+		padding-left : 100px;
+	}
+	
+	p#heads {
+		text-align : center;
+		font-weight: bold;
+		font-family: Gyeonggi_win;
+		color : #6E5057;
+	}
+
+	p {
+		font-family: Gyeonggi_win_Light;
+		font-size: 12pt;
+		user-select: none;
+	}
+	
+	strong {
+		display: inline-block;
+		margin-bottom: 20px;
+		font-family: Gyeonggi_win_bold;
+		font-size: 14pt;
+		color: #3B2B2F;
+		user-select: none;
+	}
+
+	form>div {
+		padding: 10px;
+	}
+	
+	label {
+		font-family: Gyeonggi_win_Light;
+		font-size: 12pt;
+		user-select: none;
+	}
+
+	input {
+		background-color: #E4A6B4;
+		color: white;
+		border: none;
+		border-radius: 15px;
+		padding: 5 8 5 8px;
+		font-family: Gyeonggi_win_Medium;
+		font-size: 12pt;
+		margin-left: 5px;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	input:hover {
+		background-color: #6E5057;
+	}
+
+	.formheader {
+		margin-bottom: 50px;
+		font-family: Gyeonggi_win_Light;
+		font-size: 12pt;
+		text-align: center;
+		color: #3B2B2F;
+		user-select: none;
+	}
+
+	div.accord>div>label {
+		font-family: Dosis-Medium;
+	}
+
+	div.note>div>label {
+		font-family: Dosis-Medium;
+	}
+	#texts {
+	text-align : center;
+	color : #6E5057;
+	}
+	
+	.boxlabel#radiobtn:hover {
+		background-color: #f0c7ce;
+	}
+	
+
+</style>
+<title>향과 노트를 골라 향수 찾기</title>
+</head>
+<body>
+	<div class="bg_img">
+	<!-- 클릭 시 메인페이지로 이동 -->
+		<header>
+			<div id="ttlbg">
+			<div id="ttlout">
+				<p id="ttlbox">
+					<a href="/" class="title">Perfume Finder</a>
+				</p>
+			</div>
+			</div>
+		</header>
+
+
+		{% csrf_token %}
+		<!-- radio버튼과 checkbox, 일반 버튼으로 구성 -->
+		<div class="formbox">
+			<div class="formheader">
+				<h3>향과 노트를 골라 향수 찾기</h4>
+				<span>기억 속에 남아있는 향의 느낌을 통해 찾거나 원하는 향을 조합해서 나에게 딱 맞는 향수를 찾아보세요</span>
+			</div>
+			<table align="center"><tr><td>
+				<form action="result1" method="post">
+					<div class="gender">
+						<strong>성별</strong><br>
+						<div class="boxlabel" id="radiobtn">
+							<input type="radio" name="gender" value="male" id="male">
+							<label for="male">남</label>
+						</div>
+						<div class="boxlabel" id="radiobtn">
+							<input type="radio" name="gender" value="female" id="female">
+							<label for="female">여</label>
+						</div>
+						<div class="boxlabel" id="radiobtn">
+							<input type="radio" name="gender" value="all" id="all">
+							<label for="all">무관</label>
+						</div>
+					</div>
+					<hr>
+					<div class="accord">
+						<strong>조합</strong><br>
+						
+						{% for a in accs %}
+						<div class="boxlabel" id="ac_{{a}}">
+							<input type="checkbox" name="accord[]" value="{{a}}" id="{{a}}">
+							<label for="{{a}}">{{a|upper}}</label>
+						</div>
+						
+						{% endfor %}	
+						
+					</div>
+					<hr>
+					
+					<div class="note">
+						<strong>노트</strong><br>
+						
+						{% for n,rn in notenames %}
+						<div class="boxlabel" id="nt_{{n}}">
+							<input type="checkbox" name="note[]" value="{{rn}}" id="{{n}}">
+							<label for="{{n}}">{{n|upper}}</label>
+						</div>
+						{% endfor %}
+						
+					</div>
+					<hr>
+					
+					<div class="sillage">
+						<strong>확산력</strong><br>
+						<div class="boxlabel" id="radiobtn">
+							<input type="radio" name="sillage" value="high" id="high">
+							<label for="high">강한 것</label>
+						</div>
+						<div class="boxlabel" id="radiobtn">
+							<input type="radio" name="sillage" value="low" id="low">
+							<label for="low">약한 것</label>
+						</div>
+					</div>
+					
+					
+					
+					<div class="age">
+						<strong>나이대</strong><br>
+						<div class="boxlabel" id="radiobtn">
+							<input type="radio" name="age" value="10" id="10s">
+							<label for="10s">10대 이하</label>
+						</div>
+						<div class="boxlabel" id="radiobtn">
+							<input type="radio" name="age" value="20" id="20s">
+							<label for="20s">20대</label>
+						</div>
+						<div class="boxlabel" id="radiobtn">
+							<input type="radio" name="age" value="30" id="30s">
+							<label for="30s">30대</label>
+						</div>
+						<div class="boxlabel" id="radiobtn">
+							<input type="radio" name="age" value="40" id="40s">
+							<label for="40s">40대 이상</label>
+						</div>
+					</div>
+					
+					
+					
+					
+					<hr>
+					<center>
+					<input type="button" value="이전" onclick="goBack()">
+					<input type="submit" value="확인">	
+					</center>
+				</form>
+			</td><td>
+				<div id="sidebox">
+					<p id="heads"></p>
+					<p id="texts">
+						항목 위에 마우스를 올리시면 설명이 나옵니다
+					</p>
+				</div>
+			</td></tr></table>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

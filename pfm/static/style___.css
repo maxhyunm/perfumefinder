@@ -1,0 +1,98 @@
+@-moz-keyframes reveal-banner {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@-webkit-keyframes reveal-banner {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@-ms-keyframes reveal-banner {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes reveal-banner {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+
+@FONT-FACE {
+	font-family: 'Dosis-ExtraBold';
+	src:url("font/Dosis/Dosis-ExtraBold.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Gyeonggi_win';
+	src:url("font/Gyeonggi_win/경기천년제목_Medium.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Rightside';
+	src:url("font/Rightside.otf");
+}
+
+@FONT-FACE {
+	font-family: 'Ameyallinda_Signature';
+	src:url("font/Ameyallinda_Signature.otf");
+}
+
+@FONT-FACE {
+	font-family: 'Shorelines_Script_Bold';
+	src:url("font/Shorelines_Script_Bold.otf");
+}
+
+@FONT-FACE {
+	font-family: 'Please_write_me_a_song';
+	src:url("font/Please_write_me_a_song.ttf");
+}
+
+@FONT-FACE {
+	font-family: 'Challenge';
+	src:url("font/Challenge.ttf");
+}
+
+body {
+	margin: 0;
+}
+
+.bg_img {		
+	position:absolute;
+	width:100%;
+	height:auto;
+	background-image: url("bgimg/transparent-perfume-bottle-flowers-pink-wall-spring-wall-with-aroma-perfume-flat-lay.jpg");
+	background-color: #E4A6B4;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	object-fit:cover;
+	opacity: 0.8;
+	z-index: -1;
+	float: left;
+}
+
+header {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.title {
+	-moz-animation: reveal-banner 1s 0s ease-in-out;
+	-webkit-animation: reveal-banner 1s 0s ease-in-out;
+	-ms-animation: reveal-banner 1s 0s ease-in-out;
+	animation: reveal-banner 1s 0s ease-in-out;
+	
+	font-size: 48pt;
+	font-family: "Dosis-ExtraBold";
+	color: white;
+	text-shadow: -2px 0 #DE7C88,
+			      0 2px #DE7C88,
+			      2px 0 #DE7C88,
+			      0 -2px #DE7C88;
+	text-decoration: none;
+}
